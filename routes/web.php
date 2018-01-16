@@ -12,15 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::check()) {
+        return redirect('/separate');
+    } else {
+        return view('landing');
+    }
 });
 
 Auth::routes();
 
-
 Route::group(['middleware' => ['auth']], function(){
+    Route::get('/separate', function() {
+        if(Auth::user()->isAdmin()) {
+            return redirect('/admin');
+        } else {
+            return redirect('/home');
+        }
+    });
+
     Route::group(['middleware' => ['auth', 'admin']], function(){
-        Route::get('/home', 'HomeController@index')->name('home');
+        Route::resource('admin', AdminController::class);
     });
 
     Route::get('/home', 'HomeController@index')->name('home');
