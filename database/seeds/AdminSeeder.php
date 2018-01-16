@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AdminSeeder extends Seeder
 {
@@ -16,7 +17,9 @@ class AdminSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@moviereview.com',
             'password' => bcrypt('123456'),
-            'admin' => true
+            'admin' => true,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
     }
 }
