@@ -34,4 +34,8 @@ class User extends Authenticatable
     public function isAdmin() {
         return $this->admin;
     }
+
+    public function ratings() {
+        return $this->hasMany(MovieRating::class);
+    }
 }
