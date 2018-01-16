@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    if(Auth::check()) {
-        return redirect('/separate');
-    } else {
-        return view('landing');
-    }
-});
+Route::get('/', 'HomeController@landing');
 
 Auth::routes();
 

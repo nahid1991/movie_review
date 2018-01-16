@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Movie;
 use App\QueryHandlers\MovieQueries;
 
 class AdminController extends Controller
