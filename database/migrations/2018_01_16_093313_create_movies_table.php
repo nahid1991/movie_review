@@ -18,7 +18,7 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('cover_image');
-            $table->decimal('avg_rating', 2, 1);
+            $table->decimal('avg_rating', 2, 1)->default(0);
             $table->timestamps();
         });
     }
