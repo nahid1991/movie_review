@@ -5,7 +5,7 @@
             <div class="col-md-3 col-sm-12">
                 <div class="panel-body">
                     <div class="card" style="width: 100% !important">
-                        <div class="poster" style="background-image: url('{{$movie->cover_image}}');">
+                        <div class="poster" style="background-image: url('{{ asset('img/uploads/poster/'.$movie->cover_image) }}');">
                         </div>
                         <div class="card-container">
                             <h4><b>{{$movie->title}}</b></h4>

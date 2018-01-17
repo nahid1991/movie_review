@@ -11,7 +11,7 @@
                         @foreach($movies as $movie)
                             <a href="/movies/{{$movie->id}}">
                                 <div class="card">
-                                    <div class="poster" style="background-image: url('{{$movie->cover_image}}');">
+                                    <div class="poster" style="background-image: url('{{ asset('img/poster/'.$movie->cover_image) }}');">
                                     </div>
                                     <div class="card-container">
                                         <h4><b>{{$movie->title}}</b></h4>
