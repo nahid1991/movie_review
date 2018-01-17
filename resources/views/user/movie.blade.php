@@ -26,9 +26,9 @@
                     <div class="panel-body">
                         <h4>(Rate the movie)</h4>
                         <input type="text" required class="user-rating" data-size="sm"
-                               value="{{$userRating ? $userRating->rating : 0.0}}">
+                               value="{{$loggedUserRating ? $loggedUserRating->rating : 0.0}}">
                         <textarea
-                                class="form-control">{{$userRating && $userRating->comment !== null ? $userRating->comment : null}}</textarea>
+                                class="form-control">{{$loggedUserRating && $loggedUserRating->comment !== null ? $loggedUserRating->comment : null}}</textarea>
                         <br>
                         <button type="button" class="rate btn btn-sm btn-primary">Submit</button>
                     </div>
@@ -36,11 +36,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h3>Other Ratings:</h3>
-                        {{--@if(count($ratings)>0)--}}
-                            <section class="ratings">
-                                {{--@include('partials.comments')--}}
-                            </section>
-                        {{--@endif--}}
+                        <section class="ratings">
+                        </section>
                     </div>
                 </div>
             </div>
@@ -49,14 +46,14 @@
     <script src="{{ asset('js/star-rating.js') }}"></script>
     <script>
         $(".rating").rating({displayOnly: true});
-        $(".user-rating").rating();
+        $(".user-rating").rating({step: 1});
 
         $(function() {
             $.ajax({
                 url : '/movies/{{$movie->id}}/ratings'
             }).done(function (data) {
                 $('.ratings').html(data);
-                $(".other-rating").rating({displayOnly: true});
+                $(".others-rating").rating({displayOnly: true});
             }).fail(function () {
                 alert('Ratings could not be loaded.');
             });
@@ -66,7 +63,6 @@
 
                 var url = $(this).attr('href');
                 getRatings(url);
-//                window.history.pushState("", "", url);
             });
 
             function getRatings(url) {
@@ -74,7 +70,7 @@
                     url : url
                 }).done(function (data) {
                     $('.ratings').html(data);
-                    $(".other-rating").rating({displayOnly: true});
+                    $(".others-rating").rating({displayOnly: true});
                 }).fail(function () {
                     alert('Ratings could not be loaded.');
                 });

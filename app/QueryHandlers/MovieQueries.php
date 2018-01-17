@@ -32,7 +32,7 @@ class MovieQueries {
         return $userComment;
     }
 
-    public function movieRatings($id) {
+    public function otherUsersRatings($id) {
         $ratings = MovieRating::where('movie_id', '=', $id)
                                 ->orderBy('created_at', 'desc')
                                 ->paginate(5);
