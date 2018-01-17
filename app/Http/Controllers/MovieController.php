@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\QueryHandlers\MovieQueries;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 
 class MovieController extends Controller
 {
@@ -30,10 +32,38 @@ class MovieController extends Controller
         return view('user.movies', compact('movies'));
     }
 
-    public function show($id) {
-        $movie = $this->movies->findMovieById($id);
-        $loggedUserRating= $this->movies->findMovieRatingForUser($id);
-        return view('user.movie', compact('movie', 'loggedUserRating'));
+    public function show($id, Request $request) {
+        try {
+            $movie = $this->movies->findMovieById($id);
+            $otherUsersRatings = $this->movies->otherUsersRatings($id);
+            $loggedUserRating= $this->movies->findMovieRatingForUser($id);
+            if($request->ajax()) {
+                return view('partials.comments', ['otherUsersRatings' => $otherUsersRatings])->render();
+            }
+            return view('user.movie', compact('movie', 'loggedUserRating', 'otherUsersRatings'));
+        } catch(Exception $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+    public function store(Request $request) {
+        $data = [
+                    'user_id' => Auth::user()->id,
+                    'movie_id' => $request->input('movie_id'),
+                    'rating' => $request->input('rating'),
+                    'comment' => $request->input('comment'),
+                ];
+
+        $saved = $this->movies->storeOrUpdateMovieReview($data);
+
+        if($saved) {
+            $request->session()->flash('alert-success', 'Rating was successful added!');
+            return redirect()->back();
+        }
+
+        $request->session()->flash('alert-danger', 'An error occured!');
+        return redirect()->back();
     }
 
     public function landing() {
@@ -43,10 +73,5 @@ class MovieController extends Controller
             $movies = $this->movies->moviesWithPagination();
             return view('landing', compact('movies'));
         }
-    }
-
-    public function ratings($id) {
-        $otherUsersRatings = $this->movies->otherUsersRatings($id);
-        return view('partials.comments', ['otherUsersRatings' => $otherUsersRatings])->render();
     }
 }

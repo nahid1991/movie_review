@@ -29,5 +29,4 @@ Route::group(['middleware' => ['auth']], function(){
     });
 
     Route::resource('movies', MovieController::class);
-    Route::get('/movies/{id}/ratings', 'MovieController@ratings');
 });
