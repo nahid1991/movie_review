@@ -33,8 +33,7 @@ class MovieController extends Controller
     public function show($id) {
         $movie = $this->movies->findMovieById($id);
         $userRating= $this->movies->findMovieRatingForUser($id);
-        $ratings = $this->movies->movieRatings($id);
-        return view('user.movie', compact('movie', 'userRating', 'ratings'));
+        return view('user.movie', compact('movie', 'userRating'));
     }
 
     public function landing() {

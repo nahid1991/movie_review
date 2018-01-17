@@ -36,9 +36,11 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h3>Other Ratings:</h3>
-                        @if(count($ratings)>0)
-                            @include('partials.comments')
-                        @endif
+                        {{--@if(count($ratings)>0)--}}
+                            <section class="ratings">
+                                {{--@include('partials.comments')--}}
+                            </section>
+                        {{--@endif--}}
                     </div>
                 </div>
             </div>
@@ -48,6 +50,35 @@
     <script>
         $(".rating").rating({displayOnly: true});
         $(".user-rating").rating();
-        $(".other-rating").rating({displayOnly: true});
+
+        $(function() {
+            $.ajax({
+                url : '/movies/{{$movie->id}}/ratings'
+            }).done(function (data) {
+                $('.ratings').html(data);
+                $(".other-rating").rating({displayOnly: true});
+            }).fail(function () {
+                alert('Ratings could not be loaded.');
+            });
+
+            $('body').on('click', '.pagination a', function(e) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+                getRatings(url);
+//                window.history.pushState("", "", url);
+            });
+
+            function getRatings(url) {
+                $.ajax({
+                    url : url
+                }).done(function (data) {
+                    $('.ratings').html(data);
+                    $(".other-rating").rating({displayOnly: true});
+                }).fail(function () {
+                    alert('Ratings could not be loaded.');
+                });
+            }
+        });
     </script>
 @endsection
