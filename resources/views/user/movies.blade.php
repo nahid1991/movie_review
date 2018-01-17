@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <div class="panel-body">
                         @foreach($movies as $movie)
-                            <a href="#">
+                            <a href="/movies/{{$movie->id}}">
                                 <div class="card">
                                     <div class="poster" style="background-image: url('{{$movie->cover_image}}');">
                                     </div>
@@ -28,4 +28,8 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/star-rating.js') }}"></script>
+    <script>
+        $(".rating").rating({displayOnly: true});
+    </script>
 @endsection

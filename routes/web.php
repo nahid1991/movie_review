@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@landing');
+Route::get('/', 'MovieController@landing');
 
 Auth::routes();
 
@@ -20,7 +20,7 @@ Route::group(['middleware' => ['auth']], function(){
         if(Auth::user()->isAdmin()) {
             return redirect('/admin');
         } else {
-            return redirect('/home');
+            return redirect('/movies');
         }
     });
 
@@ -28,5 +28,5 @@ Route::group(['middleware' => ['auth']], function(){
         Route::resource('admin', AdminController::class);
     });
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('movies', MovieController::class);
 });

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\QueryHandlers\MovieQueries;
 
-class HomeController extends Controller
+class MovieController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,7 +17,6 @@ class HomeController extends Controller
     public function __construct(MovieQueries $movies)
     {
         $this->movies=$movies;
-//        $this->middleware('auth');
     }
 
     /**
@@ -28,7 +27,12 @@ class HomeController extends Controller
     public function index()
     {
         $movies = $this->movies->moviesWithPagination();
-        return view('user.home', compact('movies'));
+        return view('user.movies', compact('movies'));
+    }
+
+    public function show($id) {
+        $movie = $this->movies->findMovieById($id);
+        return view('user.movie', compact('movie'));
     }
 
     public function landing() {

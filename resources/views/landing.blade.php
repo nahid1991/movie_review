@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <div class="panel-body">
                         @foreach($movies as $movie)
-                            <a href="#">
+                            <a href="/movies/{{$movie->id}}">
                                 <div class="card">
                                     <div class="poster" style="background-image: url('{{$movie->cover_image}}');">
                                     </div>

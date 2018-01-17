@@ -12,4 +12,13 @@ class MovieQueries {
 
         return $movies;
     }
+
+    public function findMovieById($id) {
+        $movie = Movie::with('ratings')
+            ->where('id', '=', $id)
+            ->orderBy('movies.created_at', 'desc')
+            ->first();
+
+        return $movie;
+    }
 }
