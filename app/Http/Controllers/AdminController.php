@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\QueryHandlers\MovieQueries;
+use App\DataTables\MoviesDataTable;
 
 class AdminController extends Controller
 {
@@ -14,8 +15,8 @@ class AdminController extends Controller
         $this->movies=$movies;
     }
 
-    public function index() {
+    public function index(MoviesDataTable $dataTable) {
         $movies = $this->movies->moviesWithPagination();
-        return view('admin.index', compact('movies'));
+        return $dataTable->render('admin.index');
     }
 }

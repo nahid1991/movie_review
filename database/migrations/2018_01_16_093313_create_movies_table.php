@@ -19,6 +19,9 @@ class CreateMoviesTable extends Migration
             $table->text('description')->nullable();
             $table->string('cover_image');
             $table->decimal('avg_rating', 2, 1)->default(0);
+            $table->text('main_actors')->nullable();
+            $table->date('release_date')->nullable();
+            $table->enum('genre', ['thriller', 'action', 'romantic', 'comedy', 'sci-fi', 'horror', 'others'])->nullable();
             $table->timestamps();
         });
     }

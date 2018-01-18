@@ -2,8 +2,9 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\Models\Movie;
 use Yajra\DataTables\Services\DataTable;
+use Carbon\Carbon;
 
 class MoviesDataTable extends DataTable
 {
@@ -16,18 +17,24 @@ class MoviesDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', 'movies.action');
+            ->editColumn('release_date', function($movie) {
+                $releaseDate = Carbon::parse($movie->release_date);
+                return $releaseDate->format('jS \\of F');
+            })
+            ->addColumn('action', function ($movie) {
+                return view('partials.action', compact('movie'))->render();
+            });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\User $model
+     * @param \App\Models\Movie $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(Movie $movies)
     {
-        return $model->newQuery()->select('id', 'add-your-columns-here', 'created_at', 'updated_at');
+        return $movies->query()->select('id', 'title', 'main_actors', 'release_date', 'genre');
     }
 
     /**
@@ -41,7 +48,11 @@ class MoviesDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->addAction(['width' => '80px'])
-                    ->parameters($this->getBuilderParameters());
+                    ->parameters([$this->getBuilderParameters(),
+                        'buttons' => [
+                             'reload',
+                        ]
+                    ]);
     }
 
     /**
@@ -53,9 +64,10 @@ class MoviesDataTable extends DataTable
     {
         return [
             'id',
-            'add your columns',
-            'created_at',
-            'updated_at'
+            'title',
+            'main_actors',
+            'release_date',
+            'genre'
         ];
     }
 
