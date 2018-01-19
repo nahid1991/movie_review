@@ -23,7 +23,7 @@ class CreateMoviesTable extends Migration
             $table->date('release_date')->nullable();
             $table->string('producer')->nullable();
             $table->string('director')->nullable();
-            $table->enum('genre', ['thriller', 'action', 'romantic', 'comedy', 'sci-fi', 'horror', 'others'])->nullable();
+            $table->enum('genre', ['thriller', 'action', 'romantic', 'comedy', 'sci-fi', 'horror', 'others'])->default('others');
             $table->timestamps();
         });
     }
