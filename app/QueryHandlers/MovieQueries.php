@@ -92,4 +92,34 @@ class MovieQueries {
 
         return $movieRating->save();
     }
+
+    public function updateMovie($data) {
+        $movie = Movie::where('id', '=', $data['id'])->first();
+
+        $movie->title = $data['title'];
+        $movie->description = $data['description'];
+        $movie->main_actors = $data['main_actors'];
+        $movie->director = $data['director'];
+        $movie->producer = $data['producer'];
+        $movie->genre = $data['genre'];
+        $movie->release_date = $data['release_date'];
+        $movie->cover_image = $data['cover_image'] != '' ? $data['cover_image'] : $movie->cover_image;
+
+        return $movie->save();
+    }
+
+    public function storeMovie($data) {
+        $movie = new Movie();
+
+        $movie->title = $data['title'];
+        $movie->description = $data['description'];
+        $movie->main_actors = $data['main_actors'];
+        $movie->director = $data['director'];
+        $movie->producer = $data['producer'];
+        $movie->genre = $data['genre'];
+        $movie->release_date = $data['release_date'];
+        $movie->cover_image = $data['cover_image'] != '' ? $data['cover_image'] : $movie->cover_image;
+
+        return [$movie->save(), $movie->id];
+    }
 }

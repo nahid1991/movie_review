@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default text-center">
                     <a href="/admin" class="btn btn-sm btn-primary pull-left" style="margin: 5px">< Back</a>
-                    <div class="panel-heading text-center" style="display: inline-flex"><b>({{$movie->title}}) - Edit</b></div>
+                    <div class="panel-heading text-center" style="display: inline-flex"><b>Add Movie</b></div>
                 </div>
                 <div class="panel-body">
                     <div class="flash-message">
@@ -25,22 +25,20 @@
                             @endif
                         @endforeach
                     </div>
-                    <form action="{{ action('AdminMoviesController@update', $movie->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ action('AdminMoviesController@store') }}" method="post" enctype="multipart/form-data">
                         {!! csrf_field() !!}
-                        {!! method_field('PUT') !!}
                         <div class="col-md-4 col-sm-12">
-                            <label>Cover Image</label>
-                            <img src="{{ asset('img/uploads/poster/'.$movie->cover_image) }}" id="cover_image_tag" width="300px"/>
+                            <img src="" id="cover_image_tag" width="300px" alt="Cover Image"/>
                             <br>
-                            <label for="cover_image">Change Image</label>
-                            <input required type="file" name="cover_image" id="cover_image">
+                            <label for="cover_image">Add Cover Image</label>
+                            <input type="file" name="cover_image" id="cover_image">
                         </div>
                         <div class="col-md-8 col-sm-12">
                             <label for="title">Title</label>
-                            <input required type="text" id="title" class="form-control" name="title" value="{{$movie->title}}">
+                            <input type="text" id="title" class="form-control" name="title" value="">
 
                             <label for="description">Description</label>
-                            <textarea required name="description" id="description" cols="30" rows="10" class="form-control">{{$movie->description}}</textarea>
+                            <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
 
                             <label for="genre">Genre</label>
                             @php
@@ -48,24 +46,24 @@
                             @endphp
                             <select name="genre" class="form-control">
                                 @foreach($genres as $genre)
-                                <option {{$movie->genre == $genre ? 'selected': ''}} value="{{$genre}}">{{ucwords($genre)}}</option>
+                                    <option value="{{$genre}}">{{ucwords($genre)}}</option>
                                 @endforeach
                             </select>
 
                             <label for="main_actors">Main Actors</label>
-                            <input type="text" name="main_actors" id="main_actors" class="form-control" value="{{$movie->main_actors}}">
+                            <input type="text" name="main_actors" id="main_actors" class="form-control" value="">
 
                             <label for="director">Director</label>
-                            <input type="text" name="director" id="director" class="form-control" value="{{$movie->director}}">
+                            <input type="text" name="director" id="director" class="form-control" value="">
 
                             <label for="producer">Producer</label>
-                            <input type="text" name="producer" id="producer" class="form-control" value="{{$movie->producer}}">
+                            <input type="text" name="producer" id="producer" class="form-control" value="">
 
                             <label for="release_date">Release Date:</label>
                             <input type="text" name="release_date" class="release_date form-control" id="release_date"
-                                   value="{{\Carbon\Carbon::parse($movie->release_date)->format('j F Y')}}">
+                                   value="">
 
-                            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
                         </div>
                     </form>
                 </div>
