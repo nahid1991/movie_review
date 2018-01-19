@@ -17,6 +17,9 @@ class MoviesDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
+            ->editColumn('genre', function($movie){
+                return ucwords($movie->genre);
+            })
             ->addColumn('action', function ($movie) {
                 return view('partials.action', compact('movie'))->render();
             });
@@ -30,7 +33,7 @@ class MoviesDataTable extends DataTable
      */
     public function query(Movie $movies)
     {
-        return $movies->query()->select('id', 'title', 'main_actors', 'release_date', 'genre');
+        return $movies->query()->orderBy('release_date', 'desc')->select('id', 'title', 'main_actors', 'director', 'producer', 'release_date', 'genre');
     }
 
     /**
@@ -62,6 +65,8 @@ class MoviesDataTable extends DataTable
             'id',
             'title',
             'main_actors',
+            'director',
+            'producer',
             'release_date',
             'genre'
         ];
