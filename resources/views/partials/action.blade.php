@@ -1,1 +1,1 @@
-<a href="/admin/movies/{{$movie->id}}" class="btn btn-sm btn-primary">Edit</a>
+<a href="/admin/movies/{{$movie->id}}/edit" class="btn btn-sm btn-primary">Edit</a>

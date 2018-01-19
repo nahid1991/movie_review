@@ -17,10 +17,6 @@ class MoviesDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->editColumn('release_date', function($movie) {
-                $releaseDate = Carbon::parse($movie->release_date);
-                return $releaseDate->format('jS \\of F');
-            })
             ->addColumn('action', function ($movie) {
                 return view('partials.action', compact('movie'))->render();
             });

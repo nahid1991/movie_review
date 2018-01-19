@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">New Movies</div>
+                    <div class="panel-heading" style="display: inline-flex">Movies</div>
+                    <a href="/admin/movies/create" class="btn btn-sm btn-primary pull-right" style="margin: 5px">Add New Movie</a>
                 </div>
                 {!! $dataTable->table() !!}
             </div>
