@@ -58,12 +58,12 @@ class MovieController extends Controller
         $saved = $this->movies->storeOrUpdateMovieReview($data);
 
         if($saved) {
-            $request->session()->flash('alert-success', 'Rating was successful added!');
+            $request->session()->flash('alert-success', 'Rating was successfully added!');
             return redirect()->back();
         }
 
         $request->session()->flash('alert-danger', 'An error occured!');
-        return redirect()->back();
+        return redirect('/movies/'.$request->input('movie_id'));
     }
 
     public function landing() {
