@@ -19,7 +19,15 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                &nbsp;
+                <form method="get" action="{{url('/search')}}">
+                    <div class="input-group" style="max-width: 550px; margin-top: 5px">
+                        <input type="text" class="form-control" name="keyword" placeholder="Search for..." value="{{isset($keyword) ? $keyword : ''}}">
+                        <input type="hidden" name="genre" value="{{isset($genre) ? $genre : ''}}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Go!</button>
+                        </span>
+                    </div>
+                </form>
             </ul>
 
             <!-- Right Side Of Navbar -->

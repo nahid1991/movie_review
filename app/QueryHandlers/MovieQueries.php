@@ -8,10 +8,26 @@ use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 
 class MovieQueries {
-    public function moviesWithPagination() {
-        $movies = Movie::with('ratings')
-            ->orderBy('movies.created_at', 'desc')
-            ->paginate(15);
+    public function moviesWithPagination($data = []) {
+        $movies = Movie::query();
+        $movies = $movies->with('ratings');
+
+        if(!empty($data['genre'])) {
+            $movies = $movies->where('genre', '=', $data['genre']);
+        }
+
+        if(!empty($data['keyword'])) {
+            $movies = $movies->where(function($m) use($data){
+                $m->where('title', 'LIKE', '%'.$data['keyword'].'%')
+                    ->orWhere('description', 'LIKE', '%'.$data['keyword'].'%')
+                    ->orWhere('main_actors', 'LIKE', '%'.$data['keyword'].'%')
+                    ->orWhere('director', 'LIKE', '%'.$data['keyword'].'%')
+                    ->orWhere('producer', 'LIKE', '%'.$data['keyword'].'%');
+            });
+        }
+
+        $movies = $movies->orderBy('movies.release_date', 'desc')
+            ->paginate(3);
 
         return $movies;
     }

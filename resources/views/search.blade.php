@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Show category</div>
+                    <div class="panel-heading">Filter category</div>
                     <div class="panel-body">
                         @include('partials.categories')
                     </div>
@@ -12,7 +12,7 @@
             </div>
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">New Movies</div>
+                    <div class="panel-heading">Showing results for Keyword: "{{isset($keyword) ? $keyword : ''}}" & Genre: "{{isset($genre) ? $genre : ''}}"</div>
                 </div>
                 <div class="panel-body">
                     @include('partials.movies')

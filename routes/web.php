@@ -31,3 +31,5 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('movies', MovieController::class);
     Route::resource('admin/movies', AdminMoviesController::class);
 });
+
+Route::get('/search', 'MovieController@search');

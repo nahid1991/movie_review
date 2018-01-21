@@ -67,11 +67,22 @@ class MovieController extends Controller
     }
 
     public function landing() {
-        if(\Auth::check()) {
+        if(Auth::check()) {
             return redirect('/separate');
         } else {
             $movies = $this->movies->moviesWithPagination();
             return view('landing', compact('movies'));
         }
+    }
+
+    public function search(Request $request) {
+        $keyword = $request->get('keyword');
+        $genre = $request->get('genre');
+        $data = [
+            'keyword' => $keyword,
+            'genre' => $genre
+        ];
+        $movies = $this->movies->moviesWithPagination($data);
+        return view('search', compact('keyword', 'genre', 'movies'));
     }
 }
