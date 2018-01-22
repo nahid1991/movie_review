@@ -31,14 +31,14 @@
                             <img src="" id="cover_image_tag" width="300px" alt="Cover Image"/>
                             <br>
                             <label for="cover_image">Add Cover Image</label>
-                            <input type="file" name="cover_image" id="cover_image">
+                            <input type="file" name="cover_image" id="cover_image" required>
                         </div>
                         <div class="col-md-8 col-sm-12">
                             <label for="title">Title</label>
-                            <input type="text" id="title" class="form-control" name="title" value="">
+                            <input type="text" id="title" class="form-control" name="title" value="" required>
 
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                            <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
 
                             <label for="genre">Genre</label>
                             @php
