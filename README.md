@@ -22,6 +22,10 @@
                <p>'strict' => true,</p>
                <p>'engine' => null,</p>
            <p>],</p>
+<p>Also set it up in the env file</p>
+<p>DB_DATABASE=YOUR_DATABASE_NAME</p>
+<p>DB_USERNAME=YOUR_DATABASE_USERNAME</p>
+<p>DB_PASSWORD=YOUR_DATABASE_PASSWORD</p>
 <h3>Step #5</h3>
 <p>In the command line or terminal run 'php artisan migrate' to migrate the databases</p>
 <h3>Step #6</h3>
