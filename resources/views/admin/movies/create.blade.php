@@ -37,7 +37,7 @@
                             <label for="title">Title</label>
                             <input type="text" id="title" class="form-control" name="title" value="" required>
 
-                            <label for="description">Description</label>
+                            <label for="description">Description (Story)</label>
                             <textarea name="description" id="description" cols="30" rows="10" class="form-control" required></textarea>
 
                             <label for="genre">Genre</label>

@@ -39,7 +39,7 @@
                             <label for="title">Title</label>
                             <input required type="text" id="title" class="form-control" name="title" value="{{$movie->title}}">
 
-                            <label for="description">Description</label>
+                            <label for="description">Description (Story)</label>
                             <textarea required name="description" id="description" cols="30" rows="10" class="form-control">{{$movie->description}}</textarea>
 
                             <label for="genre">Genre</label>
