@@ -29,7 +29,7 @@
 <h3>Step #5</h3>
 <p>In the command line or terminal run 'php artisan migrate' to migrate the databases</p>
 <h3>Step #6</h3>
-<p>In the command line or terminal run 'php artisan db:seed --class:AdminSeeder' to seed the admin's username, password</p>
+<p>In the command line or terminal run 'php artisan db:seed --class=AdminSeeder' to seed the admin's username, password</p>
 <p>Note: Admin username will be: 'admin@moviereview.com' and password: '123456' for the demo</p>
 <h3>Step #6</h3>
 <p>Now you can enter movies for normal movies to rate for the normal users.</p>
