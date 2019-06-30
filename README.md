@@ -8,20 +8,18 @@
 <p>Create a mysql database for the project</p>
 <h3>Step #4</h3>
 <p>Go to 'config/database.php' and configure your settings there.</p>
-<p>'mysql' => [</p>
-               <p>'driver' => 'mysql',</p>
-               <p>'host' => env('DB_HOST', '127.0.0.1'),</p>
-               <p>'port' => env('DB_PORT', '3306'),</p>
-               <p>'database' => env('DB_DATABASE', 'YOUR_DATABASE_NAME'),</p>
-               <p>'username' => env('DB_USERNAME', 'YOUR_MYSQL_USERNAME'),</p>
-               <p>'password' => env('DB_PASSWORD', 'YOUR_PASSWORD'),</p>
-               <p>'unix_socket' => env('DB_SOCKET', ''),</p>
-               <p>'charset' => 'utf8mb4',</p>
-               <p>'collation' => 'utf8mb4_unicode_ci',</p>
-               <p>'prefix' => '',</p>
-               <p>'strict' => true,</p>
-               <p>'engine' => null,</p>
-           <p>],</p>
+<p>'mysql' => ['driver' => 'mysql',
+               'host' => env('DB_HOST', '127.0.0.1'),
+               'port' => env('DB_PORT', '3306'),
+               'database' => env('DB_DATABASE', 'YOUR_DATABASE_NAME'),
+               'username' => env('DB_USERNAME', 'YOUR_MYSQL_USERNAME'),
+               'password' => env('DB_PASSWORD', 'YOUR_PASSWORD'),
+               'unix_socket' => env('DB_SOCKET', ''),
+               'charset' => 'utf8mb4',
+               'collation' => 'utf8mb4_unicode_ci',
+               'prefix' => '',
+               'strict' => true,
+               'engine' => null,],</p>
 <p>Also set it up in the env file</p>
 <p>DB_DATABASE=YOUR_DATABASE_NAME</p>
 <p>DB_USERNAME=YOUR_DATABASE_USERNAME</p>
